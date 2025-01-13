@@ -2,28 +2,33 @@ import React from "react";
 import Avatar from "react-avatar";
 import nameInitials from "name-initials";
 
-const Connected = () => {
-  const users = ["Ayush Dahiwale", "Ayush Dahiwale"];
+const MobileConnected = ({users}) => {
+
+  
   const getFirstName = (fullName) => fullName.split(" ")[0];
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h1 className="text-homeText">Connected Users</h1>
+    <>
+    <div className="flex flex-col items-center justify-center mt-4">
+      <h1 className="text-homeText text-center lg:text-xl font-mono text-[16px] pb-2">
+        Connected Users
+      </h1>
 
-      {/* <div className="bg-textArea  rounded-2xl w-auto h-auto p-3"> */}
       <div
-        className={`bg-textArea rounded-2xl p-3 mx-auto ${
+        className={`bg-textArea rounded-2xl p-3 mx-auto  ${
           users.length === 1
-            ? "w-[20vh] h-[15vh] flex items-center justify-center"
+            ? "lg:w-[15vw] lg:h-[8vw] w-[20vh] h-[15vh] flex items-center justify-center"
             : users.length === 2
-            ? "w-[25vh] h-[15vh] flex items-center justify-center"
+            ? "lg:w-[16vw] lg:h-[9vw]  w-[25vh] h-[15vh] flex items-center justify-center"
+            : users.length === 3
+            ? "lg:w-[17vw] lg:h-[10vw] w-[30vh] h-[16vh] flex items-center justify-center"
             : "w-auto h-auto"
         }`}
       >
         <div
           className={`grid ${
             users.length === 1
-              ? "grid-cols-1"
+              ? "grid-cols-1 "
               : users.length === 2
               ? "grid-cols-2"
               : users.length <= 3
@@ -41,7 +46,7 @@ const Connected = () => {
                 round={true}
               />
 
-              <p className="text-homeText text-xs text-center ">
+              <p className=" text-homeText text-xs text-center ">
                 {getFirstName(user).substr(0, 4)}
                 {nameInitials(user)[1]}
               </p>
@@ -49,25 +54,18 @@ const Connected = () => {
           ))}
         </div>
       </div>
-
-      <div className="flex items-center justify-center gap-9">
-        <button
-          className="text-xl text-homeText border-1.5 border-websiteBg
-              bg-shareBtn lg:h-12 lg:w-28 w-24 h-10 mt-8 lg:mt-9 rounded-3xl 
-              cursor-pointer"
-        >
-          Share
-        </button>
-        <button
-          className="text-xl text-homeText border-1.5 border-websiteBg
-              bg-joinBtn lg:h-12 lg:w-28 w-24 h-10 mt-8 lg:mt-9 rounded-3xl 
-              cursor-pointer"
-        >
-          Leave
-        </button>
-      </div>
     </div>
+
+    <div className="grid grid-cols-2 gap-0">
+
+      <div>
+
+      </div>
+      
+      
+    </div>
+    </>
   );
 };
 
-export default Connected;
+export default MobileConnected;
