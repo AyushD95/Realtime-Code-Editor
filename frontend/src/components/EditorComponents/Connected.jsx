@@ -22,6 +22,8 @@ const MobileConnected = ({users}) => {
             ? "lg:w-[16vw] lg:h-[9vw]  w-[25vh] h-[15vh] flex items-center justify-center"
             : users.length === 3
             ? "lg:w-[17vw] lg:h-[10vw] w-[30vh] h-[16vh] flex items-center justify-center"
+            : users.length === 4
+            ? "lg:w-[304px] lg:h-[125px]  flex items-center justify-center"
             : "w-auto h-auto"
         }`}
       >

@@ -10,8 +10,8 @@ const EditorPage = () => {
     "Ayush Dahiwale",
     "Kunal Kundra",
     "Danni Daniels",
-    // "Priya Chopra",
-    // "Emiliy Wills",
+    "Priya Chopra",
+    "Emiliy Wills",
   ];
 
   return (
