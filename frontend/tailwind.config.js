@@ -9,6 +9,7 @@ export default {
       joinBtn: "#d70d3d",
       inputBg: "#8B939C",
       textArea: "#585757",
+      shareBtn:"#5CE671"
     },
     extend: {
       borderWidth: {

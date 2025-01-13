@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const [roomId, setRoomId] = useState("");
   const [userName, setUserName] = useState("");
+  const navigate = useNavigate();
 
   const createNewRoom = (e) => {
     e.preventDefault();
@@ -17,16 +19,31 @@ const Form = () => {
 
   const joinRoom = (e) => {
     if (!roomId || !userName) {
-      
-      !userName? toast.error("Enter Username"): !roomId? toast.error("Enter Room Id"):toast.error("Enter Username and RoomI Id") 
-      e.preventDefault()
+      !userName && !roomId
+        ? toast.error("Enter Username and Room ID")
+        : !userName
+        ? toast.error("Enter Username")
+        : !roomId
+        ? toast.error("Enter Room ID")
+        : toast.success("All fields are filled!");
+
+      e.preventDefault();
       return;
     }
-    else{
 
-      
-    }
+    navigate(`/editor/${roomId}`, {
+      state: { userName, roomId },
+    });
   };
+
+
+
+  const handelEnterInput = (e)=>{
+    if(e.code==='Enter')
+    {
+      joinRoom()
+    }
+  }
 
   return (
     <div className="bg-black  flex items-center justify-center lg:mt-12 mt-20">
@@ -35,7 +52,7 @@ const Form = () => {
                   font-irish-grover lg:h-[420px] lg:w-96 h-96 
                   w-80  justify-center"
       >
-        <form>
+  
           <div className="pt-10">
             <h1 className="ml-8 text-homeText text-xl lg:text-2xl ">
               Enter Room ID
@@ -49,6 +66,7 @@ const Form = () => {
                 type="text"
                 onChange={(e) => setRoomId(e.target.value)}
                 value={roomId}
+                onKeyUp={handelEnterInput}
               />
             </div>
           </div>
@@ -66,19 +84,20 @@ const Form = () => {
                 type="text"
                 onChange={(e) => setUserName(e.target.value)}
                 value={userName}
+                onKeyUp={handelEnterInput}
               />
             </div>
           </div>
 
           <div className="flex items-center justify-center">
-            <input
+            <button
               className="text-xl text-homeText border-1.5 border-websiteBg
               bg-joinBtn lg:h-12 lg:w-28 w-24 h-10 mt-8 lg:mt-9 rounded-3xl 
               cursor-pointer"
-              value="Join"
-              type="submit"
               onClick={joinRoom}
-            />
+            >
+              Join
+            </button>
           </div>
 
           <div>
@@ -93,7 +112,7 @@ const Form = () => {
               </a>
             </h1>
           </div>
-        </form>
+       
       </div>
     </div>
   );
