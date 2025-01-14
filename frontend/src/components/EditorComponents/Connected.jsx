@@ -39,11 +39,10 @@ const MobileConnected = ({users}) => {
           } gap-5`}
         >
           {users.map((user, index) => (
-            <div className="flex flex-col relative">
+            <div className="flex flex-col relative" key={index}>
               <Avatar
-                key={index}
                 name={user}
-                maxInitials="2"
+                maxInitials={2}
                 size={55}
                 round={true}
               />

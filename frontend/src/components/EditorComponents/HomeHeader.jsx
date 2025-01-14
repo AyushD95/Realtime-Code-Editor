@@ -1,14 +1,9 @@
 import React from "react";
-import  { useNavigate } from 'react-router-dom'
 
 
-const HomeHeader = () => {
+const HomeHeader = ({returnHome}) => {
 
-  const navigate = useNavigate()
-  const returnHome =()=>{
-     navigate("/")
-     return ;
-  }
+ 
   return (
     
       <div className="sticky z-50 bg-gray-300 lg:pr-8 pt-2 pb-1 lg:justify-start">
