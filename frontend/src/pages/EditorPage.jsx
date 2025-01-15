@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef} from "react";
 import HomeHeader from "../components/EditorComponents/HomeHeader";
 import Editor from "../components/EditorComponents/Editor";
 import Connected from "../components/EditorComponents/Connected";
@@ -7,11 +7,30 @@ import { useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Toaster } from 'react-hot-toast';
 import  { useNavigate } from 'react-router-dom'
+import { socket } from '../socket.js'
 
 
 
-const EditorPage = () => 
+function EditorPage ()
 {
+  
+  const socketRef = useRef(null);
+
+  useEffect( () => {
+
+    const init = async()=>{
+
+      socketRef.current =  await socket()
+      socketRef.current.emit("new", "hi");
+
+  
+    }
+
+    init()
+    
+  }, []);
+
+
   const location = useLocation();
   const { userName, roomId } = location.state || {};
   const users = [
