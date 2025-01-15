@@ -16,7 +16,10 @@ const Connected = ({users}) => {
 
       <div
         className={`bg-textArea rounded-2xl p-3 mx-auto  ${
-          users.length === 1
+             
+            users.length === 0
+            ? "lg:w-[15vw] lg:h-[8vw] w-[20vh] h-[15vh] flex items-center justify-center"
+            :users.length === 1
             ? "lg:w-[15vw] lg:h-[8vw] w-[20vh] h-[15vh] flex items-center justify-center"
             : users.length === 2
             ? "lg:w-[16vw] lg:h-[9vw]  w-[25vh] h-[15vh] flex items-center justify-center"
