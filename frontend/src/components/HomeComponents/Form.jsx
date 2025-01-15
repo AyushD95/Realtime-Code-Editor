@@ -80,7 +80,7 @@ const Form = () => {
                 className="focus:outline-none focus:ring-2 focus:ring-blue-500 
                 focus:border-blue-500 mt-5 bg-inputBg stroke-websiteBg 
                 shadow-black border-1.5 border-websiteBg  lg:w-80 lg:h-11 
-                w-64 h-9 rounded-3xl lg:px-5 px-3"
+                w-64 h-9 rounded-3xl lg:px-5 px-3  lg:text-lg"
                 type="text"
                 onChange={(e) => setUserName(e.target.value)}
                 value={userName}

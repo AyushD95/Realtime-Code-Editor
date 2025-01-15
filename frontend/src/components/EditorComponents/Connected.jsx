@@ -2,7 +2,7 @@ import React from "react";
 import Avatar from "react-avatar";
 import nameInitials from "name-initials";
 
-const MobileConnected = ({users}) => {
+const Connected = ({users}) => {
 
   
   const getFirstName = (fullName) => fullName.split(" ")[0];
@@ -41,15 +41,15 @@ const MobileConnected = ({users}) => {
           {users.map((user, index) => (
             <div className="flex flex-col relative" key={index}>
               <Avatar
-                name={user}
+                name={user.userName}
                 maxInitials={2}
                 size={55}
                 round={true}
               />
 
               <p className=" text-homeText text-xs text-center ">
-                {getFirstName(user).substr(0, 4)}
-                {nameInitials(user)[1]}
+                {getFirstName(user.userName).substr(0, 4)}
+                {nameInitials(user.userName)[1]}
               </p>
             </div>
           ))}
@@ -69,4 +69,4 @@ const MobileConnected = ({users}) => {
   );
 };
 
-export default MobileConnected;
+export default Connected;

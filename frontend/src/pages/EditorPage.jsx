@@ -1,4 +1,4 @@
-import React, { useEffect, useRef} from "react";
+import React, { useEffect, useRef, useState} from "react";
 import HomeHeader from "../components/EditorComponents/HomeHeader";
 import Editor from "../components/EditorComponents/Editor";
 import Connected from "../components/EditorComponents/Connected";
@@ -6,13 +6,19 @@ import Button from "../components/EditorComponents/Button";
 import { useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Toaster } from 'react-hot-toast';
-import  { useNavigate } from 'react-router-dom'
+import  { useNavigate, Navigate } from 'react-router-dom'
 import { socket } from '../socket.js'
 
 
 
 function EditorPage ()
 {
+  const location = useLocation();
+  const { userName, roomId } = location.state || {};
+  const navigate = useNavigate()
+
+  const [users,setUsers]=useState([])
+
   
   const socketRef = useRef(null);
 
@@ -21,7 +27,40 @@ function EditorPage ()
     const init = async()=>{
 
       socketRef.current =  await socket()
-      socketRef.current.emit("new", "hi");
+
+      
+
+
+      socketRef.current.on("connect_error",(err)=>handelError(err));
+      socketRef.current.on("connect_failed",(err)=> handelError(err));
+
+
+      function handelError(err){
+        console.log("Error: ",err)
+        toast.error("Socket connection failed, try agian")
+        navigate("/")
+      }
+
+
+
+      socketRef.current.emit("join", {
+        roomId,
+        userName
+      });
+
+
+     
+
+     
+      socketRef.current.on("joined",({clients, joinedUserName, socketId})=>{
+        
+        if(joinedUserName != userName ){
+          toast.success(`${joinedUserName} had joined`)
+        }
+
+        setUsers(clients)
+        
+      })
 
   
     }
@@ -31,18 +70,9 @@ function EditorPage ()
   }, []);
 
 
-  const location = useLocation();
-  const { userName, roomId } = location.state || {};
-  const users = [
-    "Ayush Dahiwale",
-    "Kunal Kundra",
-    "Danni Daniels",
-    "Priya Chopra",
-    "Emiliy Wills",
-  ];
 
 
-  const navigate = useNavigate()
+
   const returnHome =()=>{
      navigate("/")
      return ;
@@ -69,11 +99,14 @@ function EditorPage ()
 
   
 
-  useEffect(() => {
-    toast.success(`Welcome ${userName}`);
-  }, []);
 
 
+
+  if(!location.state)
+  {
+
+  return <Navigate to={"/"}/>
+}
 
   return (
     <div className="bg-websiteBg min-h-screen overflow-y-hidden flex flex-col lg:flex-row lg:overflow-hidden lg:w-100vw lg:h-100vh ">
