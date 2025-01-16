@@ -1,0 +1,221 @@
+/* .homePageWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    height: 100vh;
+}
+
+.formWrapper {
+    background: #282a36;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+}
+
+footer a {
+    color: #4aee88;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.mainLabel {
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.homePageLogo {
+    height: 80px;
+    margin-bottom: 30px;
+}
+
+.inputBox {
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    margin-bottom: 14px;
+    background: #eee;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.joinBtn,
+.leaveBtn {
+    background: #4aed88;
+    width: 100px;
+    margin-left: auto;
+}
+
+.joinBtn:hover,
+.leaveBtn:hover {
+    background: #2b824c;
+}
+
+.createInfo {
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.createNewBtn {
+    color: #4aed88;
+    text-decoration: none;
+    border-bottom: 1px solid #4aed88;
+    transition: all 0.3s ease-in-out;
+}
+
+.createNewBtn:hover,
+footer a:hover {
+    color: #368654;
+    border-color: #368654;
+}
+
+.mainWrap {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+}
+
+.aside {
+    background: #1c1e29;
+    padding: 16px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+.asideInner {
+    flex: 1;
+}
+
+.clientsList {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.client {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold;
+}
+.userName {
+    margin-top: 10px;
+}
+
+.logo {
+    border-bottom: 1px solid #424242;
+    padding-bottom: 10px;
+}
+
+.logoImage {
+    height: 60px;
+}
+
+.leaveBtn {
+    width: 100%;
+    margin-top: 20px;
+} */
+/* .CodeMirror {
+    min-height: calc(100vh - 10px);
+    font-size: 20px;
+    line-height: 1.6;
+    padding-top: 20px;
+} */
+
+@media only screen and (max-width: 768px) {
+    .CodeMirror {
+      height: 70vh;
+      overflow-y: hidden; 
+      overflow-x: hidden;
+      width: 100vw;
+      font-size: 15px;
+      line-height: 1.6;
+      padding-top: 7px;
+      padding-right: 17px;
+      padding-bottom: 7px;
+      border-radius: 16px;
+    }
+  
+    .CodeMirror > .CodeMirror-inner { /* Target the inner content container */
+      height: 100%; 
+      overflow-y: hidden; /* Prevent initial overflow from the editor's internal structure */ 
+    }
+  
+    .CodeMirror:has(> *:not(:last-child)) { 
+      .CodeMirror > .CodeMirror-inner { 
+        overflow-y: auto; /* Enable scrolling only when content overflows */
+      }
+    }
+  }
+
+
+
+  @media only screen and (min-width: 769px) {
+    .CodeMirror {
+      height: 100vh;
+      max-width: 100%; 
+      overflow-x: auto; 
+      overflow-y: hidden; 
+      font-size: 20px;
+      line-height: 1.6;
+      padding-top: 2px;
+      border: none;
+      border-radius: 8px;
+      background-color: #282c34;
+      color: #fff;
+      position: relative; 
+      display: block; 
+      white-space: nowrap; /* Prevent wrapping of long lines */
+    }
+  
+    .CodeMirror > .CodeMirror-inner {
+      height: 100%; 
+      overflow-x: auto; 
+      overflow-y: hidden; 
+      white-space: nowrap; /* Prevent wrapping of long lines */
+    }
+  
+    /* Custom Scrollbar Styles (Only for CodeMirror) */
+    .CodeMirror::-webkit-scrollbar {
+      width: 6px; 
+    }
+  
+    .CodeMirror::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.2); 
+      border-radius: 4px; 
+    }
+  
+    .CodeMirror::-webkit-scrollbar-track {
+      background-color: rgba(255, 255, 255, 0.05); 
+    }
+  
+    /* Prevent default browser horizontal scrolling */
+    .CodeMirror {
+      -ms-overflow-style: none; /* Internet Explorer, Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  
+    .CodeMirror::-webkit-scrollbar { 
+      display: none; /* Chrome, Safari, Edge */
+    }
+  }

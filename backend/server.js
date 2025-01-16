@@ -5,7 +5,10 @@ import { Server } from "socket.io";
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: "https://qbj2grf1-5173.inc1.devtunnels.ms/", methods: ["GET", "POST"] },
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+  },
 });
 
 const PORT = 5000;
@@ -13,45 +16,48 @@ const PORT = 5000;
 const userSocketMap = {};
 
 function getAllClients(roomId) {
-     
-  return Array.from(io.sockets.adapter.rooms.get(roomId) || []).map(         // by defaul it return map so to convert it to an array we use Array.from()
-    
-    (socktId)=>{      
+  return Array.from(io.sockets.adapter.rooms.get(roomId) || []).map(
+    // by defaul it return map so to convert it to an array we use Array.from()
 
-
-    return {
-        socktId,
-        userName: userSocketMap[socktId]
+    (socketId) => {
+      return {
+        socketId,
+        userName: userSocketMap[socketId],
+      };
     }
-  }) 
-
+  );
 }
-
-
 
 io.on("connection", (socket) => {
   socket.on("join", ({ roomId, userName }) => {
-
     userSocketMap[socket.id] = userName;
 
     socket.join(roomId);
 
     const clients = getAllClients(roomId);
 
+    clients.forEach(({ socketId }) => {
+      io.to(socketId).emit("joined", {
+        clients,
+        joinedUserName: userName,
+        socketId: socket.id,
+      });
+    });
+  });
 
-    clients.forEach(({ socktId })=>{
-        
-        io.to(socktId).emit("joined",{
-            clients,
-            joinedUserName:userName,
-            socktId:socket.id
-        })
+  socket.on("disconnecting", () => {
+    const room = [...socket.rooms];
 
+    room.forEach((roomId) => {
+      socket.in(roomId).emit("disconnected", {
+        socketId: socket.id,
+        LeavingUserName: userSocketMap[socket.id],
+      });
+    });
 
-    })
-
-
-});
+    delete userSocketMap[socket.id];
+    socket.leave();
+  });
 });
 
 server.listen(PORT, () => console.log(`Server Started at ${PORT}`));
