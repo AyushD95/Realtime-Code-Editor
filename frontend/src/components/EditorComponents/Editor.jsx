@@ -25,8 +25,13 @@ const Editor = () => {
     }
   }, []);
 
+
+
+
   return (
+    
     <textarea 
+      value='console.log("Hello World")'
       id="realtimeEditor" 
       ref={editorRef} 
       className="" 

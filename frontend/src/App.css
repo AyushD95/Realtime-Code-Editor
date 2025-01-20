@@ -143,79 +143,78 @@ footer a:hover {
 } */
 
 @media only screen and (max-width: 768px) {
-    .CodeMirror {
-      height: 70vh;
-      overflow-y: hidden; 
-      overflow-x: hidden;
-      width: 100vw;
-      font-size: 15px;
-      line-height: 1.6;
-      padding-top: 7px;
-      padding-right: 17px;
-      padding-bottom: 7px;
-      border-radius: 16px;
-    }
-  
-    .CodeMirror > .CodeMirror-inner { /* Target the inner content container */
-      height: 100%; 
-      overflow-y: hidden; /* Prevent initial overflow from the editor's internal structure */ 
-    }
-  
-    .CodeMirror:has(> *:not(:last-child)) { 
-      .CodeMirror > .CodeMirror-inner { 
-        overflow-y: auto; /* Enable scrolling only when content overflows */
-      }
-    }
+  .CodeMirror {
+    height: 70vh;
+    overflow-y: hidden; 
+    overflow-x: hidden;
+    width: 100vw;
+    font-size: 15px;
+    line-height: 1.6;
+    padding-top: 7px;
+    padding-right: 17px;
+    padding-bottom: 7px;
+    border-radius: 16px;
   }
 
+  .CodeMirror > .CodeMirror-inner { /* Target the inner content container */
+    height: 100%; 
+    overflow-y: hidden; /* Prevent initial overflow from the editor's internal structure */ 
+  }
 
-
-  @media only screen and (min-width: 769px) {
-    .CodeMirror {
-      height: 100vh;
-      max-width: 100%; 
-      overflow-x: auto; 
-      overflow-y: hidden; 
-      font-size: 20px;
-      line-height: 1.6;
-      padding-top: 2px;
-      border: none;
-      border-radius: 8px;
-      background-color: #282c34;
-      color: #fff;
-      position: relative; 
-      display: block; 
-      white-space: nowrap; /* Prevent wrapping of long lines */
-    }
-  
-    .CodeMirror > .CodeMirror-inner {
-      height: 100%; 
-      overflow-x: auto; 
-      overflow-y: hidden; 
-      white-space: nowrap; /* Prevent wrapping of long lines */
-    }
-  
-    /* Custom Scrollbar Styles (Only for CodeMirror) */
-    .CodeMirror::-webkit-scrollbar {
-      width: 6px; 
-    }
-  
-    .CodeMirror::-webkit-scrollbar-thumb {
-      background-color: rgba(255, 255, 255, 0.2); 
-      border-radius: 4px; 
-    }
-  
-    .CodeMirror::-webkit-scrollbar-track {
-      background-color: rgba(255, 255, 255, 0.05); 
-    }
-  
-    /* Prevent default browser horizontal scrolling */
-    .CodeMirror {
-      -ms-overflow-style: none; /* Internet Explorer, Edge */
-      scrollbar-width: none; /* Firefox */
-    }
-  
-    .CodeMirror::-webkit-scrollbar { 
-      display: none; /* Chrome, Safari, Edge */
+  .CodeMirror:has(> *:not(:last-child)) { 
+    .CodeMirror > .CodeMirror-inner { 
+      overflow-y: auto; /* Enable scrolling only when content overflows */
     }
   }
+}
+
+
+
+@media only screen and (min-width: 769px) {
+  .CodeMirror {
+    height: 100vh;
+    max-width: 100%; 
+    overflow-x: auto; 
+    overflow-y: hidden; 
+    font-size: 18px;
+    line-height: 1.6;
+    padding-top: 2px;
+    border: none;
+    background-color: #282c34;
+    color: #fff;
+    position: relative; 
+    display: block; 
+    white-space: nowrap; /* Prevent wrapping of long lines */
+  }
+
+  .CodeMirror > .CodeMirror-inner {
+    height: 100%; 
+    overflow-x: auto; 
+    overflow-y: hidden; 
+    white-space: nowrap; /* Prevent wrapping of long lines */
+  }
+
+  /* Custom Scrollbar Styles (Only for CodeMirror) */
+  .CodeMirror::-webkit-scrollbar {
+    width: 6px; 
+  }
+
+  .CodeMirror::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2); 
+    border-radius: 4px; 
+  }
+
+  .CodeMirror::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.05); 
+  }
+
+  /* Prevent default browser horizontal scrolling */
+  .CodeMirror {
+    -ms-overflow-style: none; /* Internet Explorer, Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .CodeMirror::-webkit-scrollbar { 
+    display: none; /* Chrome, Safari, Edge */
+  }
+}

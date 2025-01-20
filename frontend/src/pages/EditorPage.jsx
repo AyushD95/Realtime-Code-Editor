@@ -114,7 +114,7 @@ function EditorPage() {
     // </div>
 
 
-<div className="bg-websiteBg min-h-screen overflow-hidden flex flex-col lg:flex-row lg:overflow-hidden lg:w-full lg:h-screen"> 
+<div className="bg-websiteBg min-h-screen overflow-hidden flex  flex-col lg:flex-row lg:overflow-hidden lg:w-full lg:h-screen"> 
   <div>
     <Toaster position="top-right" reverseOrder={false} />
   </div>
@@ -129,7 +129,7 @@ function EditorPage() {
       <Editor /> 
     </div>
 
-    <div className="lg:fixed lg:mt-28 lg:pt-10 lg:pl-0 mr-[3.9px]"> 
+    <div className=" lg:mt-28 lg:pt-10 lg:pl-0 mr-[3.9px]"> 
       <Connected users={users} />
       <div className="lg:pt-9 lg:mt-40">
         <Button onCopy={copyUrl} onLeave={returnHome} />
@@ -138,7 +138,7 @@ function EditorPage() {
   </div>
 
   {/* Render Editor only for desktop */}
-  <div className="hidden lg:block lg:w-full"> 
+  <div className=" hidden lg:block lg:w-full"> 
     <Editor /> 
   </div>
 </div>
