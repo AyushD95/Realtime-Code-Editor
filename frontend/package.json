@@ -10,8 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@uiw/codemirror-extensions-langs": "^4.23.7",
-    "@uiw/codemirror-theme-material": "^4.23.7",
     "@uiw/react-codemirror": "^4.23.7",
     "codemirror": "^5.65.2",
     "core-js-pure": "^3.40.0",

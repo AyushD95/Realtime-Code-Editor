@@ -68,7 +68,7 @@ function EditorPage() {
   const returnHome = () => {
     navigate("/");
     return;
-  };
+  }; 
 
   const copyUrl = () => {
     // const currentUrl = window.location.href;
