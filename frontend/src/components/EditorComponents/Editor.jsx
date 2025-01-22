@@ -52,14 +52,13 @@ const Editor = ({socketRef,roomId, onCodeChange}) => {
 
     if(socketRef.current)
     {
-      const editor = editorRef.current;
       socketRef.current.on('code_change',({code,from})=>{
         if(code !== null)
         {
           
           editorRef.current.setValue(code)
               
-          // Get the lineposition from editor and update cursor using that 
+          // Get the line and position from editor and update cursor using that 
           const line = from?.line;
           const ch = from?.ch; 
           

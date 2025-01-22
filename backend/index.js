@@ -11,12 +11,13 @@ const io = new Server(server, {
   },
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 const userSocketMap = {};
 
 function getAllClients(roomId) {
   return Array.from(io.sockets.adapter.rooms.get(roomId) || []).map(
+
     // by defaul it return map so to convert it to an array we use Array.from()
 
     (socketId) => {
@@ -29,8 +30,6 @@ function getAllClients(roomId) {
 }
 
 io.on("connection", (socket) => {
-
-
 
   socket.on("join", ({ roomId, userName }) => {
     userSocketMap[socket.id] = userName;
