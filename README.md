@@ -191,13 +191,12 @@ Contributions are welcome! Please fork the repository, create a feature branch, 
 ## Contact
 For any further inquiries or feedback, please reach out to [ayush.dahiwale95@gmail.com](mailto:ayush.dahiwale95@gmail.com)
 
-
-
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/ayushdahiwale)
-
+---
 
 
 
+[![Linkedin](https://i.sstatic.net/gVE0j.png) LinkedIn](https://www.linkedin.com/in/ayushdahiwale/)
+&nbsp;
 
 
 
