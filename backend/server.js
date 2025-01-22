@@ -29,6 +29,9 @@ function getAllClients(roomId) {
 }
 
 io.on("connection", (socket) => {
+
+
+
   socket.on("join", ({ roomId, userName }) => {
     userSocketMap[socket.id] = userName;
 
@@ -44,6 +47,21 @@ io.on("connection", (socket) => {
       });
     });
   });
+
+  socket.on('code_change',({roomId,code})=>{
+    
+    socket.in(roomId).emit('code_change',{ code })
+
+  })
+  
+  socket.on('code_sync',({code, socketId})=>{
+    
+    io.to(socketId).emit('code_change',{ code })
+
+  })
+
+  
+
 
   socket.on("disconnecting", () => {
     const room = [...socket.rooms];

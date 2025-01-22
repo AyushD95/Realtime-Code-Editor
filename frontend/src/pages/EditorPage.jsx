@@ -13,9 +13,8 @@ function EditorPage() {
   const location = useLocation();
   const { userName, roomId } = location.state || {};
   const navigate = useNavigate();
-
   const [users, setUsers] = useState([]);
-
+  const codeRef=useRef(null)  // store code fromm editor componenet
   const socketRef = useRef(null);
 
   useEffect(() => {
@@ -42,13 +41,21 @@ function EditorPage() {
           if (joinedUserName !== userName) {
             toast.success(`${joinedUserName} had joined`);
           }
-
+            
           setUsers(clients);
+
+          socketRef.current.emit('code_sync',{
+            code:codeRef.current,
+            socketId,
+          })
+
         }
       );
 
       socketRef.current.on("disconnected", ({ socketId, LeavingUserName }) => {
-        toast.success(`${LeavingUserName} had left Room`);
+        toast(`${LeavingUserName} had left Room`,{
+          icon: '⚠️',
+        });
 
         setUsers((pre) => {
           return pre.filter((client) => client.socketId !== socketId);
@@ -65,53 +72,33 @@ function EditorPage() {
     };
   }, []);
 
-  const returnHome = () => {
-    navigate("/");
-    return;
-  }; 
+  
 
-  const copyUrl = () => {
-    // const currentUrl = window.location.href;
-    navigator.clipboard
-      .writeText(roomId)
-      .then(() => {
-        toast.success("Room ID Copied!");
-      })
-      .catch((err) => {
-        toast.error("Failed to copy URL: ", err);
-      });
-  };
+  function leaveRoom() {
+    navigate('/');
+
+  }
+
+  async function copyRoomID () {
+    
+    try{    
+      await navigator.clipboard.writeText(roomId);
+      toast.success("Room ID Copied to Clipboard!");
+    }
+   
+    catch(err){
+      toast.error("Failed to copy URL");
+      console.log(err)
+    }
+    
+  } 
+
 
   if (!location.state) {
     return <Navigate to={"/"} />;
   }
 
   return (
-    // <div className="bg-websiteBg min-h-screen overflow-y-hidden flex flex-col lg:flex-row lg:overflow-hidden lg:w-100vw lg:h-100vh ">
-    //   <div>
-    //     <Toaster position="top-right" reverseOrder={false} />
-    //   </div>
-
-    //   <div className="flex flex-col items-center lg:w-[23.5vw]  lg:py-0 lg:space-y-4">
-    //     <div className="pt-2">
-    //       <HomeHeader returnHome={returnHome} />
-    //     </div>
-    //     <div className="lg:hidden">
-    //       <Editor />
-    //     </div>
-
-    //     <div className="lg:mt-28 lg:pt-10 lg:pl-0 mr-[3.9px]">
-    //       <Connected users={users} />
-    //       <div className="lg:pt-9 lg:mt-40">
-    //         <Button onCopy={copyUrl} onLeave={returnHome} />
-    //       </div>
-    //     </div>
-    //   </div>
-
-    //   <div className="hidden lg:block">
-    //     <Editor />
-    //   </div>
-    // </div>
 
 
 <div className="bg-websiteBg min-h-screen overflow-hidden flex  flex-col lg:flex-row lg:overflow-hidden lg:w-full lg:h-screen"> 
@@ -121,25 +108,35 @@ function EditorPage() {
 
   <div className=" flex flex-col items-center  lg:w-[23.5vw] lg:py-0 lg:space-y-4"> 
     <div className=" pt-2">
-      <HomeHeader returnHome={returnHome} />
+      <HomeHeader returnHome={leaveRoom} />
     </div>
 
     {/* Render Editor only for mobile */}
     <div className="lg:hidden"> 
-      <Editor /> 
+      
+      <Editor socketRef={socketRef}  roomId={roomId}  
+      onCodeChange={(code) => {
+          codeRef.current = code;
+      }}  
+      /> 
+
     </div>
 
     <div className=" lg:mt-28 lg:pt-10 lg:pl-0 mr-[3.9px]"> 
       <Connected users={users} />
       <div className="lg:pt-9 lg:mt-40">
-        <Button onCopy={copyUrl} onLeave={returnHome} />
+        <Button onCopy={copyRoomID} onLeave={leaveRoom} />
       </div>
     </div>
   </div>
 
   {/* Render Editor only for desktop */}
   <div className=" hidden lg:block lg:w-full"> 
-    <Editor /> 
+    <Editor socketRef={socketRef} roomId={roomId} 
+    onCodeChange={(code) => {
+      codeRef.current = code;
+    }} 
+    /> 
   </div>
 </div>
   );
