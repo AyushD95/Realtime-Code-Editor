@@ -8,5 +8,5 @@ export const socket = async () => {
         transports: ['websocket'],
     };
 
-    return io("https://qbj2grf1-5000.inc1.devtunnels.ms", options);
+    return io("https://realtime-code-editor-backend-indol.vercel.app", options);
 };

@@ -6,7 +6,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://qbj2grf1-5173.inc1.devtunnels.ms",
+    origin: "https://code-linkk.vercel.app",
     methods: ["GET", "POST"],
   },
 });
@@ -80,16 +80,4 @@ io.on("connection", (socket) => {
 
 server.listen(PORT, () => console.log(`Server Started at ${PORT}`));
 
-// import express from "express"
-// import 'dotenv/config'
-// import mongoConnect from "./connection.js";
-// import roomCreateJoin from "./routes/roomCreateJoin.js";
 
-// const PORT= process.env.PORT || 503
-// const app= express();
-
-// mongoConnect(process.env.MONGO_URL)
-
-// app.use('/',roomCreateJoin)
-
-// app.listen(PORT,()=>console.log(`Server started at port ${PORT}`))
