@@ -22,8 +22,8 @@ const Editor = ({socketRef,roomId, onCodeChange}) => {
 
       
       editorRef.current.on('change',(instance, changes)=>{
-        console.log(changes)
         const {origin}=changes
+        const {from} =changes
         const code =instance.getValue()
         onCodeChange(code)
         if(origin !=='setValue')
@@ -31,6 +31,7 @@ const Editor = ({socketRef,roomId, onCodeChange}) => {
           socketRef.current.emit('code_change',{
             roomId,
             code,
+            from
           })
         }
       })
@@ -52,11 +53,19 @@ const Editor = ({socketRef,roomId, onCodeChange}) => {
     if(socketRef.current)
     {
       const editor = editorRef.current;
-      socketRef.current.on('code_change',({code})=>{
+      socketRef.current.on('code_change',({code,from})=>{
         if(code !== null)
         {
           
           editorRef.current.setValue(code)
+              
+          // Get the lineposition from editor and update cursor using that 
+          const line = from?.line;
+          const ch = from?.ch; 
+          
+          if (line !== undefined) {
+            editorRef.current.setCursor({ line: line, ch: ch+1, sticky: 'before' });
+          }
 
           
         }
