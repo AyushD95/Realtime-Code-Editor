@@ -6,7 +6,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://code-linkk.vercel.app",
+    origin: "https://qbj2grf1-5173.inc1.devtunnels.ms",
     methods: ["GET", "POST"],
   },
 });
