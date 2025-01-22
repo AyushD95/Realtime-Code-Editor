@@ -108,7 +108,7 @@ function EditorPage() {
 
   <div className=" flex flex-col items-center  lg:w-[23.5vw] lg:py-0 lg:space-y-4"> 
     <div className=" pt-2">
-      <HomeHeader returnHome={leaveRoom} />
+      <HomeHeader />
     </div>
 
     {/* Render Editor only for mobile */}

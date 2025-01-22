@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const HomeHeader = ({returnHome}) => {
+const HomeHeader = () => {
 
  
   return (
@@ -16,7 +16,6 @@ const HomeHeader = ({returnHome}) => {
                lg:justify-start 
                md:text-3xl 
                sm:text-2xl" 
-      onClick={returnHome}
     >
       CodeLink
     </h1>
