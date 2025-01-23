@@ -8,6 +8,6 @@ export const socket = async () => {
         transports: ['websocket'],
     };
 
-    return io("https://achieved-swift-dichondra.glitch.me/", options);
+    return io("https://realtimeeitorbackend.onrender.com", options);
     // use url of backed for hosting I have used this
 };
