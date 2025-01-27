@@ -2,6 +2,8 @@
 # Realtime Code Editor using Websocket
 This project is a real-time collaborative code editor built using Socket.IO. The application allows multiple users to join a room, edit code collaboratively, and synchronize changes across all connected users in real time.
 
+**Live -** [https://code-linkk.vercel.app](https://code-linkk.vercel.app)
+
 ## Socket Setup
 ### Client Installation
     import { io } from "socket.io-client";
