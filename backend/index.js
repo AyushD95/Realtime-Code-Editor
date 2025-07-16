@@ -6,7 +6,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://code-linkk.vercel.app/",  // use your frontend url 
+    origin: "https://code-link-ayush-dahiwales-projects.vercel.app",  // use your frontend url 
     methods: ["GET", "POST"],
   },
 });
